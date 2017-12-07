@@ -1,0 +1,33 @@
+{
+  "name": "query-params-mongo",
+  "version": "1.0.4",
+  "description": "Convert URL query parameters to a Mongo db criteria, with an intuitive, yet complete convention for the query parameters",
+  "main": "index.js",
+  "devDependencies": {
+    "mongodb": "~2.0",
+    "chai": "^2.1.0",
+    "mocha": "^2.1.0"
+  },
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vasansr/query-params-mongo"
+  },
+  "keywords": [
+    "url",
+    "querystring",
+    "query",
+    "string",
+    "filter",
+    "mongo",
+    "mongodb"
+  ],
+  "author": "Vasan Subramanian <vasan.srini@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vasansr/query-params-mongo/issues"
+  },
+  "homepage": "https://github.com/vasansr/query-params-mongo"
+}
