@@ -1,6 +1,6 @@
 {
-  "name": "query-params-mongo",
-  "version": "1.0.4",
+  "name": "hbn-qpm",
+  "version": "1.0.0",
   "description": "Convert URL query parameters to a Mongo db criteria, with an intuitive, yet complete convention for the query parameters",
   "main": "index.js",
   "devDependencies": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/vasansr/query-params-mongo"
+    "url": "https://github.com/hoangnguyenba/query-params-mongo"
   },
   "keywords": [
     "url",
@@ -24,10 +24,10 @@
     "mongo",
     "mongodb"
   ],
-  "author": "Vasan Subramanian <vasan.srini@gmail.com>",
+  "author": "Hoang Nguyen <nbhoangit@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vasansr/query-params-mongo/issues"
+    "url": "https://github.com/hoangnguyenba/query-params-mongo/issues"
   },
-  "homepage": "https://github.com/vasansr/query-params-mongo"
+  "homepage": "https://github.com/hoangnguyenba/query-params-mongo"
 }
