@@ -230,12 +230,12 @@ module.exports = function qpm(opts) {
 		/*
 		 * Other non-filter parameters processing: sort, skip and limit
 		 */
-		var limit, offset;
+		var limit, skip;
 		if (params.__limit) {
 			limit = parseInt(params.__limit);
 		}
-		if (params.__offset) {
-			offset = parseInt(params.__offset);
+		if (params.__skip) {
+			skip = parseInt(params.__skip);
 		}
 
 		var sort;
@@ -259,7 +259,7 @@ module.exports = function qpm(opts) {
 		if (errors.length > 0)
 			throw errors;
 
-		return {filter: filter, sort: sort, limit: limit, offset: offset};
+		return {filter: filter, sort: sort, limit: limit, skip: skip};
 	}
 
 }
