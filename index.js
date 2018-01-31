@@ -230,12 +230,21 @@ module.exports = function qpm(opts) {
 		/*
 		 * Other non-filter parameters processing: sort, skip and limit
 		 */
-		var limit, skip;
+		var limit, skip, select, include_delete = false, count = false;
 		if (params.__limit) {
 			limit = parseInt(params.__limit);
 		}
 		if (params.__skip) {
 			skip = parseInt(params.__skip);
+		}
+		if (params.__select) {
+			select = params.__select.split(',');
+		}
+		if (params.__include_delete && params.__include_delete == 'true') {
+			include_delete = true
+		}
+		if (params.__count && params.__count == 'true') {
+			count = true
 		}
 
 		var sort;
@@ -259,7 +268,15 @@ module.exports = function qpm(opts) {
 		if (errors.length > 0)
 			throw errors;
 
-		return {filter: filter, sort: sort, limit: limit, skip: skip};
+		return {
+			filter: filter,
+			sort: sort,
+			limit: limit,
+			skip: skip,
+			select: select,
+			include_delete: include_delete,
+			count: count
+		};
 	}
 
 }
