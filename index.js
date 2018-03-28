@@ -11,7 +11,7 @@
 
 var validOperators = ['eq','ne','gt','gte','lt','lte','in','nin','all','exists',
 	'eqa', 'eqs',
-	'sw','swin','isw','iswin','co','coin','ico','icoin','re','rein','ire','irein'];
+	'sw','swin','isw','isws','iswin','co','coin','ico','icoin','re','rein','ire','irein'];
 
 function isMultiValOp(paramOp) {
 	return (/in/.test(paramOp) || paramOp == 'all' || paramOp == 'eqa');
@@ -133,7 +133,7 @@ module.exports = function qpm(opts) {
 				}
 				if (paramOp == 'exists') {
 					dataType = 'bool';
-				} else if(paramOp == 'eqs') {
+				} else if(paramOp == 'eqs' || paramOp == 'isws') {
 					dataType = 'string';
 				} else {
 					for (var i=0; i<autoDetectTypes.length; i++) {
@@ -169,7 +169,6 @@ module.exports = function qpm(opts) {
 			 */
 			var $op = '$eq';
 			var reOptions = paramOp[0] == 'i' ? 'i' : '';
-
 			if (/re/.test(paramOp)) {
 				// convert paramValues to regex: simple
 				paramValues = paramValues.map(function(v) {return RegExp(v, reOptions)});
@@ -211,10 +210,6 @@ module.exports = function qpm(opts) {
 
 			if ($op == '$eq') {
 				filter[paramName] = value;
-			} else if($op == '$eqs') {
-				console.log('value');
-				console.log(value);
-				filter[paramName] = value.toString();
 			} else {
 				filter[paramName] = filter[paramName] || {};	// same field may already be there
 				filter[paramName][$op] = value;
