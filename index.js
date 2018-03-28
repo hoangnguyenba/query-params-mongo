@@ -10,7 +10,7 @@
 
 
 var validOperators = ['eq','ne','gt','gte','lt','lte','in','nin','all','exists',
-	'eqa',
+	'eqa', 'eqs',
 	'sw','swin','isw','iswin','co','coin','ico','icoin','re','rein','ire','irein'];
 
 function isMultiValOp(paramOp) {
@@ -133,6 +133,8 @@ module.exports = function qpm(opts) {
 				}
 				if (paramOp == 'exists') {
 					dataType = 'bool';
+				} else if(paramOp == 'eqs') {
+					dataType = 'string';
 				} else {
 					for (var i=0; i<autoDetectTypes.length; i++) {
 						var ad = autoDetectTypes[i];
@@ -187,9 +189,8 @@ module.exports = function qpm(opts) {
 				});
 				$op = /in/.test(paramOp) ? '$in' : '$eq';
 
-			} else if (paramOp == 'eqa') {
+			} else if (paramOp == 'eqa' || paramOp == 'eqs') {
 				$op = '$eq';
-
 			} else {
 				$op = '$' + paramOp;
 			}
@@ -210,6 +211,10 @@ module.exports = function qpm(opts) {
 
 			if ($op == '$eq') {
 				filter[paramName] = value;
+			} else if($op == '$eqs') {
+				console.log('value');
+				console.log(value);
+				filter[paramName] = value.toString();
 			} else {
 				filter[paramName] = filter[paramName] || {};	// same field may already be there
 				filter[paramName][$op] = value;
@@ -239,6 +244,9 @@ module.exports = function qpm(opts) {
 		}
 		if (params.__select) {
 			select = params.__select.split(',');
+		}
+		if (params.__addselect) {
+			select = params.__addselect.split(',');
 		}
 		if (params.__include_delete && params.__include_delete == 'true') {
 			include_delete = true
